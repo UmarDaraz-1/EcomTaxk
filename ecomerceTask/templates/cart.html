@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Cart</h1>
+{% if products %}
+<table class="table">
+<thead>
+<tr>
+<th scope="col">Product</th>
+<th scope="col">Quantity</th>
+<th scope="col">Price</th>
+<th scope="col">Total</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+{% for item in products %}
+<tr>
+<td>{{ item.product.name }}</td>
+<td>{{ item.quantity }}</td>
+<td>{{ item.product.price }}</td>
+<td>{{ item.total }}</td>
+<td><a href="{% url 'view_cart' product.id %}" class="btn">Add to Cart</a></td>
+</tr>
+{% endfor %}
+</tbody>
+<tfoot>
+<tr>
+<td colspan="3">Total</td>
+<td>{{ total }}</td>
+<td><a href="{% url 'product' %}" class="btn">Continue Shopping</a></td>
+</tr>
+</tfoot>
+</table>
+{% else %}
+<p>Your cart is empty.</p>
+<a href="{% url 'product' %}" class="btn">Shop Now</a>
+{% endif %}
+{% endblock %}

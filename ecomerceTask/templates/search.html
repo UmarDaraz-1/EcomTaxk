@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+
+
+<form method="get">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  
+  <h2>Results</h2>
+  {% if products %}
+    <ul>
+      {% for product in products %}
+        <li>{{ product.name }} - {{ product.category }} - {{ product.price }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    No results found.
+  {% endif %}
+      {% endblock content %}
